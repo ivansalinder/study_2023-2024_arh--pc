@@ -1,0 +1,21 @@
+     1                                  SECTION .data
+     2 00000000 48656C6C6F2C2000        msg1: db "Hello, ",0x0
+     3                                  msg1Len: equ $ - msg1
+     4 00000008 776F726C64210A          msg2: db "world!",0xa
+     5                                  msg2Len: equ $ - msg2
+     6                                  SECTION .text
+     7                                  global _start
+     8                                  _start:
+     9 00000000 B804000000              mov eax, 4
+    10 00000005 BB01000000              mov ebx, 1
+    11 0000000A B9[00000000]            mov ecx, msg1
+    12 0000000F BA08000000              mov edx, msg1Len
+    13 00000014 CD80                    int 0x80
+    14 00000016 B804000000              mov eax, 4
+    15 0000001B BB01000000              mov ebx, 1
+    16 00000020 B9[08000000]            mov ecx, msg2
+    17 00000025 BA07000000              mov edx, msg2Len
+    18 0000002A CD80                    int 0x80
+    19 0000002C B801000000              mov eax, 1
+    20 00000031 BB00000000              mov ebx, 0
+    21 00000036 CD80                    int 0x80
